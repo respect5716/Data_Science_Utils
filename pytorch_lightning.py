@@ -8,14 +8,16 @@ class Module(pl.LightningModule):
     
     @property
     def param_groups(self):
-        no_decay = ["bias", "bn", "ln", "Norm"]
+        no_decay = ["bias", "bn", "ln", "norm"]
         param_groups = [
             {
-                "params": [p for n, p in self.named_parameters() if not any(nd in n for nd in no_decay)],
+                # apply weight decay
+                "params": [p for n, p in self.named_parameters() if not any(nd in n.lower() for nd in no_decay)],
                 "weight_decay": self.hparams.get('weight_decay', 0.0),
             },
             {
-                "params": [p for n, p in self.named_parameters() if any(nd in n for nd in no_decay)],
+                # not apply weight decay
+                "params": [p for n, p in self.named_parameters() if any(nd in n.lower() for nd in no_decay)],
                 "weight_decay": 0.0,
             },
         ]
