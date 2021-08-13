@@ -30,8 +30,6 @@ def load_tokenizer(
     """
     
     tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
-    
-    
     predefined_special_token_dict = {}
     additional_special_token_dict = {}
 
