@@ -9,7 +9,7 @@ def pad_sequences(
     trunc: str = 'pre', 
     maxlen: Optional[int] = None
 ) -> List[List[Union[str, int]]]: 
-    """pad sequences to the max length
+    """Pad sequences to the max length
     
     Args:
         seqs: List of sequences
