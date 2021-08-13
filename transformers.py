@@ -28,7 +28,6 @@ def load_tokenizer(
         tokenizer = load_tokenizer('skt/kogpt2-base-v2', special_token_dict)
         print(tokenizer.title_token) # '<title>'
     """
-    
     tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
     predefined_special_token_dict = {}
     additional_special_token_dict = {}
