@@ -73,7 +73,7 @@ class CheckpointCallback(pl.Callback):
         raise NotImplementedError("Implement save checkpoint method.")
     
     def on_validation_epoch_end(self, trainer, model):
-        curr_metric = trainer.callback_metrics[self.metric]
+        curr_metric = float(trainer.callback_metrics[self.metric])
         if self.should_save(curr_metric):
             print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric:.3f} | model saved ({self.best_metric:.3f} -> {curr_metric:.3f})')
             self.save_checkpoint(model)
