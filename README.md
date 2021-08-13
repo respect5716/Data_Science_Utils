@@ -1,5 +1,7 @@
-# Data_Science_Utils
+# Data Science Utils
 
+## Introduction
+This repository is for util functions required at data science projects
 
 ## How to use
 ```
