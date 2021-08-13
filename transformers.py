@@ -3,6 +3,9 @@
 from typing import Dict
 from transformers import AutoTokenizer
 
+PREDEFINED_SPECIAL_TOKENS = ['bos_token', 'eos_token', 'unk_token', 'sep_token', 'pad_token', 'cls_token', 'mask_token']
+
+
 def load_tokenizer(
     pretrained_model_name_or_path: str, 
     special_token_dict: Dict
@@ -28,12 +31,12 @@ def load_tokenizer(
     
     tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
     
-    predefined_special_tokens = ['bos_token', 'eos_token', 'unk_token', 'sep_token', 'pad_token', 'cls_token', 'mask_token']
+    
     predefined_special_token_dict = {}
     additional_special_token_dict = {}
 
     for k, v in special_token_dict.items():
-        if k in predefined_special_tokens:
+        if k in PREDEFINED_SPECIAL_TOKENS:
             predefined_special_token_dict[k] = v
         else:
             additional_special_token_dict[k] = v
