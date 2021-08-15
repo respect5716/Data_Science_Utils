@@ -22,6 +22,7 @@ def pandas_to_mongo(
           - if None, all columns will be included
           - if List, columns in the list will be included
           - if Dict, columns in the dict keys will be included as the dict values
+        specify_id: if True, add ids starting with the number of documents existing in the collection
 
     Examples:
         client = MongoClient(host='localhost', port=27017)
