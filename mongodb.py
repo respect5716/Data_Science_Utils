@@ -42,7 +42,7 @@ def pandas_to_mongo(
             dataframe = dataframe[columns]
         
         if specify_id:
-            dataframe['_id'] = [i for i in range(cnt, cnt+len(dataframe))]
+            dataframe['_id'] = range(cnt, cnt+len(dataframe))
 
     documents = dataframe.to_dict('records')
     _ = collection.insert_many(documents)
