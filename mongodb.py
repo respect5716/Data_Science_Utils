@@ -32,7 +32,7 @@ def pandas_to_mongo(
     """
     database = client[database_name]
     collection = database[collection_name]
-    cnt = collection.count()
+    cnt = collection.estimated_document_count()
     
     if columns:
         if type(columns) == dict:
