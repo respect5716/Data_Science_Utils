@@ -80,4 +80,4 @@ class CheckpointCallback(pl.Callback):
             self.save_checkpoint(model)
             self.best_metric = curr_metric
         else:
-            print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric} | model not saved (best metric: {self.best_metric:.3f})')
+            print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric:.3f} | model not saved (best metric: {self.best_metric:.3f})')
