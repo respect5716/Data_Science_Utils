@@ -3,3 +3,4 @@ pandas
 transformers
 pytorch-lightning
 faiss
+pymongo
