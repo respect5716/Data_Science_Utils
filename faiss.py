@@ -36,7 +36,7 @@ class PandasFaissEngine(object):
         I = I[0][ignore_first:]
 
         result = self.database.iloc[I]
-        if query:
+        if condition:
             result = result.query(condition)
         result = result.iloc[:k]
         return result
