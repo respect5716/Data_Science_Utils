@@ -1,6 +1,6 @@
 # Util functions for Huggingface Transformers
 
-from typing import Dict
+from typing import Optional, Dict
 from transformers import AutoTokenizer
 
 PREDEFINED_SPECIAL_TOKENS = ['bos_token', 'eos_token', 'unk_token', 'sep_token', 'pad_token', 'cls_token', 'mask_token']
@@ -8,7 +8,7 @@ PREDEFINED_SPECIAL_TOKENS = ['bos_token', 'eos_token', 'unk_token', 'sep_token',
 
 def load_tokenizer(
     pretrained_model_name_or_path: str, 
-    special_token_dict: Dict
+    special_token_dict: Optional[Dict] = None
 ):
     """Load transfomers tokenizer
     
@@ -29,9 +29,10 @@ def load_tokenizer(
         print(tokenizer.title_token) # '<title>'
     """
     tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+    if not special_token_dict: return tokenizer
+    
     predefined_special_token_dict = {}
     additional_special_token_dict = {}
-
     for k, v in special_token_dict.items():
         if k in PREDEFINED_SPECIAL_TOKENS:
             predefined_special_token_dict[k] = v
@@ -40,7 +41,6 @@ def load_tokenizer(
 
     predefined_special_token_dict['additional_special_tokens'] = list(additional_special_token_dict.values())
     tokenizer.add_special_tokens(predefined_special_token_dict)
-
     for k, v in additional_special_token_dict.items():
         setattr(tokenizer, f'{k}', v)
         setattr(tokenizer, f'{k}_id', tokenizer.convert_tokens_to_ids(v))
