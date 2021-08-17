@@ -16,7 +16,7 @@ class PandasFaissEngine(object):
             multiplier: k (number of nearest neighbors) is multiplied by this 
                 in case applying additional condition to result
         """
-        assert len(dataframe) == index.ntotal, 'dataframe and index should have same length.'
+        assert len(database) == index.ntotal, 'dataframe and index should have same length.'
         self.database = database
         self.index = index
         self.multiplier = multiplier
