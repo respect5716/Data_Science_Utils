@@ -21,7 +21,7 @@ class PandasFaissEngine(object):
         self.index = index
         self.multiplier = multiplier
     
-    def search(self, vector: np.array, condition: Optional[str], k: int, ignore_first: bool = True):
+    def search(self, vector: np.array, k: int, condition: Optional[str] = None, ignore_first: bool = True):
         """Search nearest neighbors using vector and additional condition
         
         Args:
