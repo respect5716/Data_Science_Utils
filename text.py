@@ -1,6 +1,6 @@
 
 import re
-import kss
+# import kss
 from typing import Union, Optional, List
 
 
@@ -69,8 +69,8 @@ class KoreanSentenceSplitter(object):
         return sentences
     
     
-    def split_sentences_kss(self, text):
-        return kss.split_sentences(text)
+#     def split_sentences_kss(self, text):
+#         return kss.split_sentences(text)
     
     
     def split_chunks(self, 
