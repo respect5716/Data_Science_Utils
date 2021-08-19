@@ -31,7 +31,7 @@ class PandasFaissEngine(object):
             ignore_first: ignore the nearest neighbor (this means that the nearest neighbor is query data itself)
         """
         vector = vector[None, :] if len(vector.shape) == 1 else vector
-        search_k = self.multiplier * k + ignore_first if condition else k
+        search_k = self.multiplier * k + ignore_first if condition else k + ignore_first
         D, I = self.index.search(vector, search_k)
         I = I[0][ignore_first:]
 
