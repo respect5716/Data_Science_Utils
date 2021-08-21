@@ -38,6 +38,26 @@ def pad_sequences(
 
     return padded_seqs
 
+
+DEFAULT_ENDCHARS = ['\w']
+DEFAULT_ENDPUNCS = ['.', '!', '?', '…']
+DEFAULT_BRACKETS = {
+    '[': ']',
+    '{': '}',
+    '(': ')',
+    '<': '>',
+    '「': '」',
+}
+DEFAULT_QUOTES = {
+    '\'': '\'',
+    '"': '"',
+    '‘': '’', # 8216:8217 
+    '“': '”', # 8220:8221
+}
+
+DEFAULT_IGNORES = ['-', '―']
+
+
 class PatternSentenceSplitter(object):
     def __init__(self, endchars: Optional[List[str]] = None):
         """
