@@ -71,7 +71,7 @@ class PatternSentenceSplitter(object):
         self.quotes = DEFAULT_QUOTES
         self.options = {**self.brackets, **self.quotes}
         self.reversed_options = {v:k for k,v in self.options.items()}
-        self.ignores = '|'.join(DEFAULT_IGNORE)
+        self.ignores = '|'.join(DEFAULT_IGNORES)
         self.specials = self.endpuncs + list(self.options.keys()) + list(self.options.values()) \
             + self.ignores.split('|')
     
