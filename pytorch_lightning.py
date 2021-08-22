@@ -1,6 +1,7 @@
 # util functions for pytorch_lightning
 import os
 import pytorch_lightning as pl
+from typing import List, Callable
 
 
 class Module(pl.LightningModule):
@@ -81,3 +82,26 @@ class CheckpointCallback(pl.Callback):
             self.best_metric = curr_metric
         else:
             print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric:.3f} | model not saved (best metric: {self.best_metric:.3f})')
+
+            
+            
+class MessageCallback(pl.Callback):
+    def __init__(self, title: str, message_fn: Callable, metrics: List[str]):
+        self.title = title
+        self.message_fn = message_fn
+        self.metrics = metrics
+
+    def on_train_start(self, trainer, pl_module):
+        self.message_fn(f'{self.title} train started!!')
+
+    def on_train_end(self, trainer, pl_module):
+        self.message_fn(f'{self.title} train ended!!')
+
+    def on_epoch_end(self, trainer, pl_module):
+        message = f'{self.title} log\n'
+        message += f'step: {trainer.global_step:06d}\n'
+        for k in self.metrics:
+            v = trainer.callback_metrics.get(k, 'none')
+            v = v if type(v) == str else f'{v:.3f}'
+            message += f'{k}: {v}\n'
+        self.message_fn(message)
