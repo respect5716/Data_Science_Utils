@@ -104,4 +104,6 @@ class MessageCallback(pl.Callback):
             v = trainer.callback_metrics.get(k, 'none')
             v = v if type(v) == str else f'{v:.3f}'
             message += f'{k}: {v}\n'
+        
+        message += '=' * 50
         self.message_fn(message)
