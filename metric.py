@@ -1,3 +1,5 @@
+from typing import List
+
 def jaccard_similarity(lst1: List, lst2: List):
     """Jaccard similarity for guaging the similarity and diversity of sample sets
     """
