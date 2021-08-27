@@ -2,7 +2,7 @@ from typing import Any
 import pytorch_lightning as pl
 
 
-DEFUALT_ARGS = {
+DEFAULT_ARGS = {
     'batch_size': 32,
     
     'trainer': {
