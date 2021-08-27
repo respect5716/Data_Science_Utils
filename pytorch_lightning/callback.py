@@ -1,3 +1,5 @@
+from typing import List, Callable
+
 import pytorch_lightning as pl
 
 
