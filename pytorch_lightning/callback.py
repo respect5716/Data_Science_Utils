@@ -17,8 +17,13 @@ class CheckpointCallback(pl.Callback):
             return curr_metric > self.best_metric
 
     def on_validation_epoch_end(self, trainer, model):
-        curr_metric = float(trainer.callback_metrics[self.metric])
-        if self.should_save(curr_metric):
+         curr_metric = float(trainer.callback_metrics[self.metric])
+        
+        if self.mode == 'always':
+            trainer.save_checkpoint(self.ckpt_path)
+            print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric:.3f} | model saved')
+       
+        elif self.should_save(curr_metric):
             print(f'STEP: {trainer.global_step:06d} | {self.metric}: {curr_metric:.3f} | model saved ({self.best_metric:.3f} -> {curr_metric:.3f})')
             trainer.save_checkpoint(self.ckpt_path)
             self.best_metric = curr_metric
