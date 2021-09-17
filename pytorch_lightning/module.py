@@ -5,7 +5,7 @@ from typing import Optional, Any, Dict, List, Callable
 from .optim import get_optimizer, get_scheduler
 
     
-class Module(pl.LightningModule):
+class BaseModule(pl.LightningModule):
     """Base module for pytorch_lightning
     """
     
